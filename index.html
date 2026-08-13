@@ -1,453 +1,1498 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-    <title>Nagalla Durga Prasad | Portfolio</title>
+
+    <meta charset="UTF-8">
+
+    <meta
+        name="viewport"
+        content="width=device-width, initial-scale=1.0"
+    >
+
+    <title>Nagalla Durga Prasad Portfolio</title>
+
+
     <style>
-        /* --- UNIX DESIGN SYSTEM --- */
-        @import url('https://fonts.googleapis.com/css2?family=Fira+Code:wght@300;500;700&family=Inter:wght@300;400;600&display=swap');
+
+        /* =====================================
+           COLOR THEME
+           CHARCOAL + EMERALD + GOLD
+           ===================================== */
 
         :root {
-            --bg-dark: #0a0b10;        /* Deep Space Black */
-            --bg-card: #161b22;        /* Terminal Surface */
-            --accent: #00d4ff;         /* Cyber Blue */
-            --accent-glow: rgba(0, 212, 255, 0.3);
-            --text-primary: #e6edf3;   /* Off-white */
-            --text-secondary: #8b949e; /* Dimmed Grey */
-            --border: #30363d;         /* Unix Border */
-            --font-mono: 'Fira Code', monospace;
+
+            --background: #0b0d0c;
+
+            --background-2: #111512;
+
+            --surface: rgba(24, 29, 25, 0.85);
+
+            --surface-light: rgba(35, 42, 36, 0.9);
+
+            --primary: #4ade80;
+
+            --secondary: #22c55e;
+
+            --accent: #f5c76a;
+
+            --white: #f5f5f0;
+
+            --text: #d8ded9;
+
+            --muted: #9ba69f;
+
+            --border: rgba(255, 255, 255, 0.10);
+
         }
+
+
+        /* =====================================
+           RESET
+           ===================================== */
 
         * {
+
             margin: 0;
+
             padding: 0;
+
             box-sizing: border-box;
+
             scroll-behavior: smooth;
+
         }
+
+
+        /* =====================================
+           BODY
+           ===================================== */
 
         body {
-            background-color: var(--bg-dark);
-            color: var(--text-primary);
-            font-family: 'Inter', sans-serif;
+
+            font-family:
+                Arial,
+                Helvetica,
+                sans-serif;
+
+            color: var(--white);
+
+            background:
+
+                radial-gradient(
+                    circle at 10% 10%,
+                    rgba(74, 222, 128, 0.08),
+                    transparent 30%
+                ),
+
+                radial-gradient(
+                    circle at 90% 20%,
+                    rgba(245, 199, 106, 0.07),
+                    transparent 30%
+                ),
+
+                radial-gradient(
+                    circle at 50% 90%,
+                    rgba(34, 197, 94, 0.05),
+                    transparent 30%
+                ),
+
+                var(--background);
+
             line-height: 1.6;
+
             overflow-x: hidden;
+
         }
 
-        /* --- NAVIGATION --- */
+
+        /* =====================================
+           HEADER
+           ===================================== */
+
         header {
-            background: rgba(10, 11, 16, 0.8);
-            backdrop-filter: blur(12px);
-            border-bottom: 1px solid var(--border);
+
             position: fixed;
-            width: 100%;
+
             top: 0;
+
+            left: 0;
+
+            width: 100%;
+
             z-index: 1000;
+
+            background:
+                rgba(11, 13, 12, 0.88);
+
+            backdrop-filter:
+                blur(18px);
+
+            -webkit-backdrop-filter:
+                blur(18px);
+
+            border-bottom:
+                1px solid var(--border);
+
         }
+
 
         nav {
+
             max-width: 1200px;
-            margin: 0 auto;
+
+            height: 76px;
+
+            margin: auto;
+
+            padding: 0 35px;
+
             display: flex;
-            justify-content: space-between;
+
             align-items: center;
-            padding: 1.2rem 2rem;
+
+            justify-content: space-between;
+
         }
+
+
+        /* =====================================
+           LOGO
+           ===================================== */
 
         .logo {
-            font-family: var(--font-mono);
-            font-weight: 700;
-            color: var(--accent);
-            letter-spacing: -1px;
-            font-size: 1.5rem;
+
+            font-size: 28px;
+
+            font-weight: 800;
+
+            letter-spacing: 3px;
+
+            color: var(--primary);
+
+            text-shadow:
+                0 0 20px
+                rgba(74, 222, 128, 0.35);
+
         }
+
+
+        /* =====================================
+           NAVIGATION
+           ===================================== */
 
         .nav-links {
-            display: flex;
+
             list-style: none;
-            gap: 2rem;
+
+            display: flex;
+
+            gap: 32px;
+
         }
+
 
         .nav-links a {
+
+            position: relative;
+
+            color: var(--text);
+
             text-decoration: none;
-            color: var(--text-secondary);
-            font-size: 0.85rem;
-            font-family: var(--font-mono);
-            transition: 0.3s;
-            text-transform: lowercase;
+
+            font-size: 14px;
+
+            font-weight: 600;
+
+            transition:
+                0.3s ease;
+
         }
 
-        .nav-links a::before {
-            content: "./";
-            color: var(--accent);
-            opacity: 0;
-            transition: 0.3s;
-        }
 
         .nav-links a:hover {
-            color: var(--accent);
+
+            color: var(--primary);
+
         }
 
-        .nav-links a:hover::before {
-            opacity: 1;
-        }
 
-        /* --- SECTIONS --- */
-        section {
-            max-width: 1100px;
-            margin: 0 auto;
-            padding: 100px 2rem;
-        }
+        .nav-links a::after {
 
-        .section-title {
-            font-family: var(--font-mono);
-            font-size: 1.8rem;
-            margin-bottom: 3rem;
-            display: flex;
-            align-items: center;
-            gap: 1rem;
-        }
-
-        .section-title::after {
             content: "";
-            height: 1px;
-            flex-grow: 1;
-            background: var(--border);
+
+            position: absolute;
+
+            left: 50%;
+
+            bottom: -9px;
+
+            width: 0;
+
+            height: 2px;
+
+            transform:
+                translateX(-50%);
+
+            background:
+                linear-gradient(
+                    90deg,
+                    var(--primary),
+                    var(--accent)
+                );
+
+            transition:
+                0.3s ease;
+
         }
 
-        /* --- HOME --- */
+
+        .nav-links a:hover::after {
+
+            width: 100%;
+
+        }
+
+
+        /* =====================================
+           HOME
+           ===================================== */
+
         .home {
-            height: 100vh;
+
+            min-height: 100vh;
+
+            max-width: 1200px;
+
+            margin: auto;
+
+            padding:
+                130px 40px 80px;
+
             display: flex;
+
             align-items: center;
+
             justify-content: space-between;
-            gap: 2rem;
+
+            gap: 70px;
+
         }
 
-        .home-text h1 { 
-            font-family: var(--font-mono);
-            color: var(--accent);
-            font-size: 1.1rem;
-            margin-bottom: 0.5rem;
+
+        .home-text {
+
+            flex: 1;
+
+            animation:
+                slideUp 1s ease;
+
         }
 
-        .home-text h2 { 
-            font-size: clamp(2.5rem, 8vw, 4rem);
-            font-weight: 700;
-            line-height: 1.1;
-            margin-bottom: 1rem;
+
+        .home-text h1 {
+
+            color: var(--muted);
+
+            font-size: 24px;
+
+            font-weight: 500;
+
+            margin-bottom: 5px;
+
         }
 
-        .home-text h3 { 
-            color: var(--text-secondary);
-            font-family: var(--font-mono);
-            font-weight: 400;
-            margin-bottom: 1.5rem;
+
+        .home-text h2 {
+
+            font-size:
+                clamp(42px, 6vw, 70px);
+
+            line-height: 1.05;
+
+            font-weight: 800;
+
+            margin-bottom: 20px;
+
+            background:
+                linear-gradient(
+                    100deg,
+                    #ffffff,
+                    var(--primary),
+                    var(--accent)
+                );
+
+            -webkit-background-clip: text;
+
+            -webkit-text-fill-color:
+                transparent;
+
         }
+
+
+        .home-text h3 {
+
+            color: var(--primary);
+
+            font-size: 20px;
+
+            font-weight: 600;
+
+            margin-bottom: 20px;
+
+        }
+
 
         .home-text p {
-            max-width: 500px;
-            color: var(--text-secondary);
-            margin-bottom: 2rem;
+
+            max-width: 620px;
+
+            color: var(--muted);
+
+            font-size: 17px;
+
+            margin-bottom: 32px;
+
         }
 
-        .home-image img {
-            width: 300px;
-            height: 300px;
-            border-radius: 20px;
-            border: 1px solid var(--border);
-            filter: grayscale(40%);
-            box-shadow: 0 20px 50px rgba(0,0,0,0.5);
-            transition: 0.5s;
-        }
 
-        .home-image img:hover {
-            filter: grayscale(0%);
-            border-color: var(--accent);
-            transform: translateY(-10px);
-        }
+        /* =====================================
+           BUTTON
+           ===================================== */
 
-        /* --- BUTTONS --- */
         .btn {
+
             display: inline-block;
-            padding: 12px 30px;
-            background: transparent;
-            color: var(--accent);
-            border: 1px solid var(--accent);
+
+            padding:
+                14px 30px;
+
+            border-radius: 50px;
+
+            color: #07100a;
+
             text-decoration: none;
-            font-family: var(--font-mono);
-            font-size: 0.9rem;
-            border-radius: 4px;
-            transition: 0.3s;
+
+            font-size: 14px;
+
+            font-weight: 800;
+
+            background:
+                linear-gradient(
+                    135deg,
+                    var(--primary),
+                    var(--accent)
+                );
+
+            box-shadow:
+                0 10px 30px
+                rgba(74, 222, 128, 0.18);
+
+            transition:
+                0.35s ease;
+
         }
+
 
         .btn:hover {
-            background: var(--accent-glow);
-            box-shadow: 0 0 20px var(--accent-glow);
+
+            transform:
+                translateY(-5px);
+
+            box-shadow:
+                0 15px 40px
+                rgba(74, 222, 128, 0.30);
+
         }
 
-        /* --- ABOUT --- */
-        .about-container {
-            background: var(--bg-card);
-            padding: 2.5rem;
-            border: 1px solid var(--border);
-            border-radius: 8px;
-            font-family: var(--font-mono);
+
+        /* =====================================
+           PROFILE IMAGE
+           ===================================== */
+
+        .home-image {
+
+            width: 350px;
+
+            height: 350px;
+
             position: relative;
+
+            display: flex;
+
+            align-items: center;
+
+            justify-content: center;
+
         }
 
-        .about-container::before {
-            content: "description.txt";
+
+        .home-image::before {
+
+            content: "";
+
             position: absolute;
-            top: -12px;
-            left: 20px;
-            background: var(--bg-dark);
-            padding: 0 10px;
-            color: var(--accent);
-            font-size: 0.8rem;
+
+            inset: -15px;
+
+            border-radius: 50%;
+
+            background:
+                conic-gradient(
+                    var(--primary),
+                    var(--accent),
+                    var(--secondary),
+                    var(--primary)
+                );
+
+            animation:
+                spin 7s linear infinite;
+
+            filter:
+                blur(2px);
+
         }
 
-        /* --- SKILLS --- */
-        .skills-container {
-            display: grid;
-            grid-template-columns: repeat(auto-fill, minmax(140px, 1fr));
-            gap: 1rem;
+
+        .home-image::after {
+
+            content: "";
+
+            position: absolute;
+
+            inset: -4px;
+
+            border-radius: 50%;
+
+            background:
+                var(--background);
+
         }
+
+
+        .home-image img {
+
+            position: relative;
+
+            z-index: 2;
+
+            width: 315px;
+
+            height: 315px;
+
+            object-fit: cover;
+
+            border-radius: 50%;
+
+            border:
+                6px solid
+                rgba(255,255,255,0.08);
+
+            box-shadow:
+                0 0 50px
+                rgba(74,222,128,0.12);
+
+        }
+
+
+        /* =====================================
+           SECTIONS
+           ===================================== */
+
+        section:not(.home) {
+
+            max-width: 1200px;
+
+            margin: auto;
+
+            padding:
+                100px 40px;
+
+        }
+
+
+        .section-title {
+
+            text-align: center;
+
+            font-size: 38px;
+
+            font-weight: 800;
+
+            margin-bottom: 55px;
+
+            color: var(--white);
+
+        }
+
+
+        .section-title::after {
+
+            content: "";
+
+            display: block;
+
+            width: 65px;
+
+            height: 4px;
+
+            margin:
+                12px auto 0;
+
+            border-radius: 20px;
+
+            background:
+                linear-gradient(
+                    90deg,
+                    var(--primary),
+                    var(--accent)
+                );
+
+        }
+
+
+        /* =====================================
+           ABOUT
+           ===================================== */
+
+        .about-container {
+
+            max-width: 850px;
+
+            margin: auto;
+
+            padding: 45px;
+
+            border-radius: 25px;
+
+            background:
+                linear-gradient(
+                    145deg,
+                    rgba(24,29,25,0.88),
+                    rgba(17,21,18,0.75)
+                );
+
+            border:
+                1px solid var(--border);
+
+            box-shadow:
+                0 20px 60px
+                rgba(0,0,0,0.40);
+
+            backdrop-filter:
+                blur(15px);
+
+            transition:
+                0.35s ease;
+
+        }
+
+
+        .about-container:hover {
+
+            transform:
+                translateY(-6px);
+
+            border-color:
+                rgba(74,222,128,0.35);
+
+            box-shadow:
+                0 25px 70px
+                rgba(0,0,0,0.50);
+
+        }
+
+
+        .about-container p {
+
+            color: var(--muted);
+
+            text-align: center;
+
+            font-size: 17px;
+
+        }
+
+
+        /* =====================================
+           SKILLS
+           ===================================== */
+
+        .skills-container {
+
+            display: grid;
+
+            grid-template-columns:
+                repeat(4, 1fr);
+
+            gap: 20px;
+
+        }
+
 
         .skill-card {
-            background: var(--bg-card);
-            border: 1px solid var(--border);
-            padding: 1rem;
+
+            min-height: 120px;
+
+            display: flex;
+
+            align-items: center;
+
+            justify-content: center;
+
             text-align: center;
-            font-family: var(--font-mono);
-            font-size: 0.85rem;
-            border-radius: 4px;
-            transition: 0.2s;
-            color: var(--text-secondary);
+
+            padding: 20px;
+
+            border-radius: 20px;
+
+            background:
+                linear-gradient(
+                    145deg,
+                    rgba(24,29,25,0.88),
+                    rgba(17,21,18,0.72)
+                );
+
+            border:
+                1px solid var(--border);
+
+            color: var(--text);
+
+            font-weight: 700;
+
+            position: relative;
+
+            overflow: hidden;
+
+            transition:
+                0.35s ease;
+
         }
+
+
+        .skill-card::before {
+
+            content: "";
+
+            position: absolute;
+
+            width: 100px;
+
+            height: 100px;
+
+            border-radius: 50%;
+
+            background:
+                var(--primary);
+
+            filter:
+                blur(60px);
+
+            opacity: 0;
+
+            transition:
+                0.35s ease;
+
+        }
+
 
         .skill-card:hover {
-            border-color: var(--accent);
-            color: var(--accent);
-            transform: scale(1.05);
+
+            transform:
+                translateY(-8px);
+
+            border-color:
+                rgba(74,222,128,0.5);
+
+            box-shadow:
+                0 20px 45px
+                rgba(74,222,128,0.08);
+
         }
 
-        /* --- CERTIFICATES --- */
-        .certificate-container {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-            gap: 1.5rem;
+
+        .skill-card:hover::before {
+
+            opacity: 0.18;
+
         }
+
+
+        /* =====================================
+           CERTIFICATES
+           ===================================== */
+
+        .certificate-container {
+
+            display: grid;
+
+            grid-template-columns:
+                repeat(3, 1fr);
+
+            gap: 25px;
+
+        }
+
 
         .certificate-card {
-            background: var(--bg-card);
-            border: 1px solid var(--border);
-            border-radius: 8px;
+
             overflow: hidden;
-            transition: 0.3s;
+
+            border-radius: 22px;
+
+            background:
+                linear-gradient(
+                    145deg,
+                    rgba(24,29,25,0.90),
+                    rgba(17,21,18,0.75)
+                );
+
+            border:
+                1px solid var(--border);
+
+            box-shadow:
+                0 15px 40px
+                rgba(0,0,0,0.30);
+
+            transition:
+                0.4s ease;
+
         }
 
-        .certificate-card img {
-            width: 100%;
-            height: 180px;
-            object-fit: cover;
-            opacity: 0.7;
-            transition: 0.3s;
-        }
-
-        .certificate-card h3 {
-            padding: 1.2rem;
-            font-size: 0.95rem;
-            font-family: var(--font-mono);
-        }
 
         .certificate-card:hover {
-            border-color: var(--accent);
+
+            transform:
+                translateY(-10px);
+
+            border-color:
+                rgba(245,199,106,0.45);
+
+            box-shadow:
+                0 25px 60px
+                rgba(0,0,0,0.50);
+
         }
+
+
+        .certificate-card img {
+
+            width: 100%;
+
+            height: 220px;
+
+            display: block;
+
+            object-fit: cover;
+
+            transition:
+                0.5s ease;
+
+        }
+
 
         .certificate-card:hover img {
-            opacity: 1;
+
+            transform:
+                scale(1.06);
+
         }
 
-        /* --- CONTACT --- */
-        .contact-container {
-            border: 1px solid var(--border);
-            padding: 3rem;
-            border-radius: 8px;
-            text-align: center;
+
+        .certificate-card h3 {
+
+            padding: 20px;
+
+            font-size: 16px;
+
+            color: var(--white);
+
         }
+
+
+        /* =====================================
+           CONTACT
+           ===================================== */
+
+        .contact-container {
+
+            max-width: 700px;
+
+            margin: auto;
+
+            padding: 45px;
+
+            text-align: center;
+
+            border-radius: 25px;
+
+            background:
+                linear-gradient(
+                    145deg,
+                    rgba(74,222,128,0.06),
+                    rgba(245,199,106,0.06)
+                );
+
+            border:
+                1px solid var(--border);
+
+            box-shadow:
+                0 20px 60px
+                rgba(0,0,0,0.40);
+
+            backdrop-filter:
+                blur(15px);
+
+        }
+
 
         .contact-container p {
-            font-family: var(--font-mono);
-            margin-bottom: 0.5rem;
-            color: var(--text-secondary);
+
+            color: var(--muted);
+
+            font-size: 16px;
+
+            margin-bottom: 12px;
+
         }
 
-        /* --- FOOTER --- */
+
+        .contact-container .btn {
+
+            margin-top: 20px;
+
+        }
+
+
+        /* =====================================
+           FOOTER
+           ===================================== */
+
         footer {
+
+            padding: 32px;
+
             text-align: center;
-            padding: 3rem;
-            border-top: 1px solid var(--border);
-            font-family: var(--font-mono);
-            font-size: 0.75rem;
-            color: var(--text-secondary);
+
+            background:
+                #070908;
+
+            border-top:
+                1px solid var(--border);
+
         }
 
-        /* --- RESPONSIVE --- */
-        @media (max-width: 768px) {
-            .home { flex-direction: column-reverse; text-align: center; padding-top: 120px; }
-            .nav-links { display: none; }
-            .section-title { font-size: 1.4rem; }
+
+        footer p {
+
+            color:
+                #68736c;
+
+            font-size: 14px;
+
         }
+
+
+        /* =====================================
+           ANIMATIONS
+           ===================================== */
+
+        @keyframes slideUp {
+
+            from {
+
+                opacity: 0;
+
+                transform:
+                    translateY(35px);
+
+            }
+
+            to {
+
+                opacity: 1;
+
+                transform:
+                    translateY(0);
+
+            }
+
+        }
+
+
+        @keyframes spin {
+
+            from {
+
+                transform:
+                    rotate(0deg);
+
+            }
+
+            to {
+
+                transform:
+                    rotate(360deg);
+
+            }
+
+        }
+
+
+        /* =====================================
+           TABLET
+           ===================================== */
+
+        @media (max-width: 900px) {
+
+            .nav-links {
+
+                gap: 18px;
+
+            }
+
+
+            .home {
+
+                flex-direction:
+                    column-reverse;
+
+                text-align: center;
+
+            }
+
+
+            .home-text p {
+
+                margin-left: auto;
+
+                margin-right: auto;
+
+            }
+
+
+            .home-image {
+
+                width: 290px;
+
+                height: 290px;
+
+            }
+
+
+            .home-image img {
+
+                width: 260px;
+
+                height: 260px;
+
+            }
+
+
+            .skills-container {
+
+                grid-template-columns:
+                    repeat(2, 1fr);
+
+            }
+
+
+            .certificate-container {
+
+                grid-template-columns:
+                    repeat(2, 1fr);
+
+            }
+
+        }
+
+
+        /* =====================================
+           MOBILE
+           ===================================== */
+
+        @media (max-width: 600px) {
+
+            nav {
+
+                height: 70px;
+
+                padding:
+                    0 15px;
+
+            }
+
+
+            .logo {
+
+                font-size: 21px;
+
+            }
+
+
+            .nav-links {
+
+                gap: 9px;
+
+            }
+
+
+            .nav-links a {
+
+                font-size: 10px;
+
+            }
+
+
+            .home {
+
+                padding:
+                    120px 20px 70px;
+
+            }
+
+
+            .home-text h1 {
+
+                font-size: 20px;
+
+            }
+
+
+            .home-text h2 {
+
+                font-size: 40px;
+
+            }
+
+
+            .home-text h3 {
+
+                font-size: 17px;
+
+            }
+
+
+            .home-text p {
+
+                font-size: 15px;
+
+            }
+
+
+            .home-image {
+
+                width: 235px;
+
+                height: 235px;
+
+            }
+
+
+            .home-image img {
+
+                width: 210px;
+
+                height: 210px;
+
+            }
+
+
+            section:not(.home) {
+
+                padding:
+                    75px 20px;
+
+            }
+
+
+            .section-title {
+
+                font-size: 30px;
+
+                margin-bottom: 38px;
+
+            }
+
+
+            .skills-container {
+
+                grid-template-columns:
+                    1fr;
+
+            }
+
+
+            .certificate-container {
+
+                grid-template-columns:
+                    1fr;
+
+            }
+
+
+            .about-container,
+            .contact-container {
+
+                padding:
+                    30px 20px;
+
+            }
+
+        }
+
     </style>
+
 </head>
+
 
 <body>
 
-<header>
-    <nav>
-        <h2 class="logo">NDP_</h2>
 
-        <ul class="nav-links">
-            <li><a href="#home">home</a></li>
-            <li><a href="#about">about</a></li>
-            <li><a href="#skills">skills</a></li>
-            <li><a href="#certificates">certs</a></li>
-            <li><a href="#contact">contact</a></li>
-        </ul>
-    </nav>
-</header>
+    <!-- HEADER -->
 
-<!-- HOME -->
-<section id="home" class="home">
-    <div class="home-text">
-        <h1>[system.init]</h1>
-        <h2>Nagalla Durga Prasad</h2>
-        <h3>ECE Student // IoT Enthusiast</h3>
+    <header>
+
+        <nav>
+
+            <h2 class="logo">
+                NDP
+            </h2>
+
+
+            <ul class="nav-links">
+
+                <li>
+                    <a href="#home">
+                        Home
+                    </a>
+                </li>
+
+                <li>
+                    <a href="#about">
+                        About
+                    </a>
+                </li>
+
+                <li>
+                    <a href="#skills">
+                        Skills
+                    </a>
+                </li>
+
+                <li>
+                    <a href="#certificates">
+                        Certificates
+                    </a>
+                </li>
+
+                <li>
+                    <a href="#contact">
+                        Contact
+                    </a>
+                </li>
+
+            </ul>
+
+        </nav>
+
+    </header>
+
+
+    <!-- HOME -->
+
+    <section id="home" class="home">
+
+
+        <div class="home-text">
+
+            <h1>
+                Hello, I'm
+            </h1>
+
+
+            <h2>
+                Nagalla Durga Prasad
+            </h2>
+
+
+            <h3>
+                ECE Student | IoT Enthusiast
+            </h3>
+
+
+            <p>
+                Passionate about Embedded Systems,
+                Smart Healthcare, IoT and Emerging Technologies.
+            </p>
+
+
+            <a
+                href="#contact"
+                class="btn"
+            >
+                Contact Me
+            </a>
+
+        </div>
+
+
+        <div class="home-image">
+
+            <img
+                src="profile.png"
+                alt="Profile Photo"
+            >
+
+        </div>
+
+
+    </section>
+
+
+    <!-- ABOUT -->
+
+    <section id="about">
+
+        <h2 class="section-title">
+            About Me
+        </h2>
+
+
+        <div class="about-container">
+
+            <p>
+
+                I am an Electronics and Communication Engineering student
+                at BVCITS with strong interest in Arduino, Embedded Systems,
+                IoT and Smart Healthcare Technologies.
+
+                I enjoy building innovative real-world projects and continuously
+                learning new technologies.
+
+            </p>
+
+        </div>
+
+    </section>
+
+
+    <!-- SKILLS -->
+
+    <section id="skills">
+
+        <h2 class="section-title">
+            Technical Skills
+        </h2>
+
+
+        <div class="skills-container">
+
+
+            <div class="skill-card">
+                Arduino
+            </div>
+
+
+            <div class="skill-card">
+                MATLAB
+            </div>
+
+
+            <div class="skill-card">
+                Python
+            </div>
+
+
+            <div class="skill-card">
+                C Programming
+            </div>
+
+
+            <div class="skill-card">
+                IoT Fundamentals
+            </div>
+
+
+            <div class="skill-card">
+                Basic Electronics
+            </div>
+
+
+            <div class="skill-card">
+                MS Excel
+            </div>
+
+
+        </div>
+
+    </section>
+
+
+    <!-- CERTIFICATES -->
+
+    <section id="certificates">
+
+        <h2 class="section-title">
+            Certificates
+        </h2>
+
+
+        <div class="certificate-container">
+
+
+            <div class="certificate-card">
+
+                <img
+                    src="python.jpg"
+                    alt="Python Development Training"
+                >
+
+                <h3>
+                    Python Development Training
+                </h3>
+
+            </div>
+
+
+            <div class="certificate-card">
+
+                <img
+                    src="arduino.jpg"
+                    alt="Arduino Unlocked"
+                >
+
+                <h3>
+                    Arduino Unlocked
+                </h3>
+
+            </div>
+
+
+            <div class="certificate-card">
+
+                <img
+                    src="techmania.jpg"
+                    alt="TECHMANIA 2K26"
+                >
+
+                <h3>
+                    TECHMANIA 2K26
+                </h3>
+
+            </div>
+
+
+            <div class="certificate-card">
+
+                <img
+                    src="veda.jpg"
+                    alt="VEDA2K25"
+                >
+
+                <h3>
+                    VEDA2K25
+                </h3>
+
+            </div>
+
+
+            <div class="certificate-card">
+
+                <img
+                    src="iks.jpg"
+                    alt="Internal Quality Assurance Cell"
+                >
+
+                <h3>
+                    Internal Quality Assurance Cell
+                </h3>
+
+            </div>
+
+
+            <div class="certificate-card">
+
+                <img
+                    src="ibm.jpg"
+                    alt="Skillsbuild"
+                >
+
+                <h3>
+                    Skillsbuild
+                </h3>
+
+            </div>
+
+
+            <div class="certificate-card">
+
+                <img
+                    src="aitools.jpg"
+                    alt="AI Tools Workshop"
+                >
+
+                <h3>
+                    AI Tools Workshop
+                </h3>
+
+            </div>
+
+
+        </div>
+
+    </section>
+
+
+    <!-- CONTACT -->
+
+    <section id="contact">
+
+        <h2 class="section-title">
+            Contact
+        </h2>
+
+
+        <div class="contact-container">
+
+            <p>
+                Email: ndp86881@gmail.com
+            </p>
+
+
+            <p>
+                Phone: +91 8688158068
+            </p>
+
+
+            <p>
+                Location: Tatipaka, Andhra Pradesh
+            </p>
+
+
+            <a
+                href="mailto:ndp86881@gmail.com"
+                class="btn"
+            >
+                Send Email
+            </a>
+
+        </div>
+
+    </section>
+
+
+    <!-- FOOTER -->
+
+    <footer>
 
         <p>
-            Passionate about Embedded Systems, 
-            Smart Healthcare, IoT and Emerging Technologies.
+            © 2026 Nagalla Durga Prasad
         </p>
 
-        <a href="#contact" class="btn">_contact_me</a>
-    </div>
+    </footer>
 
-    <div class="home-image">
-        <!-- Replace with your actual image path -->
-        <img src="profile.png" alt="Profile Photo">
-    </div>
-</section>
-
-<!-- ABOUT -->
-<section id="about">
-    <h2 class="section-title">01. About_Me</h2>
-    <div class="about-container">
-        <p>
-            I am an Electronics and Communication Engineering student 
-            at BVCITS with strong interest in Arduino, Embedded Systems, 
-            IoT and Smart Healthcare Technologies. 
-            <br><br>
-            I enjoy building innovative real-world projects and continuously 
-            learning new technologies.
-        </p>
-    </div>
-</section>
-
-<!-- SKILLS -->
-<section id="skills">
-    <h2 class="section-title">02. Tech_Stack</h2>
-    <div class="skills-container">
-        <div class="skill-card">Arduino</div>
-        <div class="skill-card">MATLAB</div>
-        <div class="skill-card">Python</div>
-        <div class="skill-card">C Programming</div>
-        <div class="skill-card">IoT Fundamentals</div>
-        <div class="skill-card">Electronics</div>
-        <div class="skill-card">MS Excel</div>
-    </div>
-</section>
-
-<!-- CERTIFICATES -->
-<section id="certificates">
-    <h2 class="section-title">03. Certificates</h2>
-    <div class="certificate-container">
-        <div class="certificate-card">
-            <img src="python.jpg" alt="Python">
-            <h3>Python Development</h3>
-        </div>
-        <div class="certificate-card">
-            <img src="arduino.jpg" alt="Arduino">
-            <h3>Arduino Unlocked</h3>
-        </div>
-        <div class="certificate-card">
-            <img src="techmania.jpg" alt="Techmania">
-            <h3>TECHMANIA 2K26</h3>
-        </div>
-        <div class="certificate-card">
-            <img src="veda.jpg" alt="Veda">
-            <h3>VEDA 2K25</h3>
-        </div>
-        <div class="certificate-card">
-            <img src="iks.jpg" alt="IKS">
-            <h3>IQAC Certification</h3>
-        </div>
-        <div class="certificate-card">
-            <img src="ibm.jpg" alt="IBM">
-            <h3>IBM Skillsbuild</h3>
-        </div>
-        <div class="certificate-card">
-            <img src="aitools.jpg" alt="AI Tools">
-            <h3>AI Tools Workshop</h3>
-        </div>
-    </div>
-</section>
-
-<!-- CONTACT -->
-<section id="contact">
-    <h2 class="section-title">04. Contact_Info</h2>
-    <div class="contact-container">
-        <p>> Email: ndp86881@gmail.com</p>
-        <p>> Phone: +91 8688158068</p>
-        <p>> Location: Tatipaka, AP</p>
-        <br>
-        <a href="mailto:ndp86881@gmail.com" class="btn">
-            Execute: Send Email
-        </a>
-    </div>
-</section>
-
-<footer>
-    <p>Handcrafted by NDP &copy; 2026 | Kernel: 6.1.0-stable</p>
-</footer>
-
-<script>
-    // Reveal animation on scroll
-    document.addEventListener('DOMContentLoaded', () => {
-        const sections = document.querySelectorAll('section');
-        
-        const revealOnScroll = () => {
-            sections.forEach(section => {
-                const sectionTop = section.getBoundingClientRect().top;
-                const windowHeight = window.innerHeight;
-                if (sectionTop < windowHeight * 0.85) {
-                    section.style.opacity = '1';
-                    section.style.transform = 'translateY(0)';
-                }
-            });
-        };
-
-        // Set initial states
-        sections.forEach(section => {
-            section.style.opacity = '0';
-            section.style.transform = 'translateY(20px)';
-            section.style.transition = 'all 0.6s ease-out';
-        });
-
-        window.addEventListener('scroll', revealOnScroll);
-        revealOnScroll(); // Run once on load
-    });
-</script>
 
 </body>
+
 </html>
