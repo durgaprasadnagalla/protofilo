@@ -3,161 +3,451 @@
 <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-    <title>Nagalla Durga Prasad Portfolio</title>
-    <link rel="stylesheet" href="style.css"/>
-    <script defer src="script.js"></script>
+    <title>Nagalla Durga Prasad | Portfolio</title>
+    <style>
+        /* --- UNIX DESIGN SYSTEM --- */
+        @import url('https://fonts.googleapis.com/css2?family=Fira+Code:wght@300;500;700&family=Inter:wght@300;400;600&display=swap');
+
+        :root {
+            --bg-dark: #0a0b10;        /* Deep Space Black */
+            --bg-card: #161b22;        /* Terminal Surface */
+            --accent: #00d4ff;         /* Cyber Blue */
+            --accent-glow: rgba(0, 212, 255, 0.3);
+            --text-primary: #e6edf3;   /* Off-white */
+            --text-secondary: #8b949e; /* Dimmed Grey */
+            --border: #30363d;         /* Unix Border */
+            --font-mono: 'Fira Code', monospace;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            scroll-behavior: smooth;
+        }
+
+        body {
+            background-color: var(--bg-dark);
+            color: var(--text-primary);
+            font-family: 'Inter', sans-serif;
+            line-height: 1.6;
+            overflow-x: hidden;
+        }
+
+        /* --- NAVIGATION --- */
+        header {
+            background: rgba(10, 11, 16, 0.8);
+            backdrop-filter: blur(12px);
+            border-bottom: 1px solid var(--border);
+            position: fixed;
+            width: 100%;
+            top: 0;
+            z-index: 1000;
+        }
+
+        nav {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 1.2rem 2rem;
+        }
+
+        .logo {
+            font-family: var(--font-mono);
+            font-weight: 700;
+            color: var(--accent);
+            letter-spacing: -1px;
+            font-size: 1.5rem;
+        }
+
+        .nav-links {
+            display: flex;
+            list-style: none;
+            gap: 2rem;
+        }
+
+        .nav-links a {
+            text-decoration: none;
+            color: var(--text-secondary);
+            font-size: 0.85rem;
+            font-family: var(--font-mono);
+            transition: 0.3s;
+            text-transform: lowercase;
+        }
+
+        .nav-links a::before {
+            content: "./";
+            color: var(--accent);
+            opacity: 0;
+            transition: 0.3s;
+        }
+
+        .nav-links a:hover {
+            color: var(--accent);
+        }
+
+        .nav-links a:hover::before {
+            opacity: 1;
+        }
+
+        /* --- SECTIONS --- */
+        section {
+            max-width: 1100px;
+            margin: 0 auto;
+            padding: 100px 2rem;
+        }
+
+        .section-title {
+            font-family: var(--font-mono);
+            font-size: 1.8rem;
+            margin-bottom: 3rem;
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+        }
+
+        .section-title::after {
+            content: "";
+            height: 1px;
+            flex-grow: 1;
+            background: var(--border);
+        }
+
+        /* --- HOME --- */
+        .home {
+            height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 2rem;
+        }
+
+        .home-text h1 { 
+            font-family: var(--font-mono);
+            color: var(--accent);
+            font-size: 1.1rem;
+            margin-bottom: 0.5rem;
+        }
+
+        .home-text h2 { 
+            font-size: clamp(2.5rem, 8vw, 4rem);
+            font-weight: 700;
+            line-height: 1.1;
+            margin-bottom: 1rem;
+        }
+
+        .home-text h3 { 
+            color: var(--text-secondary);
+            font-family: var(--font-mono);
+            font-weight: 400;
+            margin-bottom: 1.5rem;
+        }
+
+        .home-text p {
+            max-width: 500px;
+            color: var(--text-secondary);
+            margin-bottom: 2rem;
+        }
+
+        .home-image img {
+            width: 300px;
+            height: 300px;
+            border-radius: 20px;
+            border: 1px solid var(--border);
+            filter: grayscale(40%);
+            box-shadow: 0 20px 50px rgba(0,0,0,0.5);
+            transition: 0.5s;
+        }
+
+        .home-image img:hover {
+            filter: grayscale(0%);
+            border-color: var(--accent);
+            transform: translateY(-10px);
+        }
+
+        /* --- BUTTONS --- */
+        .btn {
+            display: inline-block;
+            padding: 12px 30px;
+            background: transparent;
+            color: var(--accent);
+            border: 1px solid var(--accent);
+            text-decoration: none;
+            font-family: var(--font-mono);
+            font-size: 0.9rem;
+            border-radius: 4px;
+            transition: 0.3s;
+        }
+
+        .btn:hover {
+            background: var(--accent-glow);
+            box-shadow: 0 0 20px var(--accent-glow);
+        }
+
+        /* --- ABOUT --- */
+        .about-container {
+            background: var(--bg-card);
+            padding: 2.5rem;
+            border: 1px solid var(--border);
+            border-radius: 8px;
+            font-family: var(--font-mono);
+            position: relative;
+        }
+
+        .about-container::before {
+            content: "description.txt";
+            position: absolute;
+            top: -12px;
+            left: 20px;
+            background: var(--bg-dark);
+            padding: 0 10px;
+            color: var(--accent);
+            font-size: 0.8rem;
+        }
+
+        /* --- SKILLS --- */
+        .skills-container {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(140px, 1fr));
+            gap: 1rem;
+        }
+
+        .skill-card {
+            background: var(--bg-card);
+            border: 1px solid var(--border);
+            padding: 1rem;
+            text-align: center;
+            font-family: var(--font-mono);
+            font-size: 0.85rem;
+            border-radius: 4px;
+            transition: 0.2s;
+            color: var(--text-secondary);
+        }
+
+        .skill-card:hover {
+            border-color: var(--accent);
+            color: var(--accent);
+            transform: scale(1.05);
+        }
+
+        /* --- CERTIFICATES --- */
+        .certificate-container {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 1.5rem;
+        }
+
+        .certificate-card {
+            background: var(--bg-card);
+            border: 1px solid var(--border);
+            border-radius: 8px;
+            overflow: hidden;
+            transition: 0.3s;
+        }
+
+        .certificate-card img {
+            width: 100%;
+            height: 180px;
+            object-fit: cover;
+            opacity: 0.7;
+            transition: 0.3s;
+        }
+
+        .certificate-card h3 {
+            padding: 1.2rem;
+            font-size: 0.95rem;
+            font-family: var(--font-mono);
+        }
+
+        .certificate-card:hover {
+            border-color: var(--accent);
+        }
+
+        .certificate-card:hover img {
+            opacity: 1;
+        }
+
+        /* --- CONTACT --- */
+        .contact-container {
+            border: 1px solid var(--border);
+            padding: 3rem;
+            border-radius: 8px;
+            text-align: center;
+        }
+
+        .contact-container p {
+            font-family: var(--font-mono);
+            margin-bottom: 0.5rem;
+            color: var(--text-secondary);
+        }
+
+        /* --- FOOTER --- */
+        footer {
+            text-align: center;
+            padding: 3rem;
+            border-top: 1px solid var(--border);
+            font-family: var(--font-mono);
+            font-size: 0.75rem;
+            color: var(--text-secondary);
+        }
+
+        /* --- RESPONSIVE --- */
+        @media (max-width: 768px) {
+            .home { flex-direction: column-reverse; text-align: center; padding-top: 120px; }
+            .nav-links { display: none; }
+            .section-title { font-size: 1.4rem; }
+        }
+    </style>
 </head>
 
 <body>
 
 <header>
     <nav>
-        <h2 class="logo">NDP</h2>
+        <h2 class="logo">NDP_</h2>
 
         <ul class="nav-links">
-            <li><a href="#home">Home</a></li>
-            <li><a href="#about">About</a></li>
-            <li><a href="#skills">Skills</a></li>
-            <li><a href="#certificates">Certificates</a></li>
-            <li><a href="#contact">Contact</a></li>
+            <li><a href="#home">home</a></li>
+            <li><a href="#about">about</a></li>
+            <li><a href="#skills">skills</a></li>
+            <li><a href="#certificates">certs</a></li>
+            <li><a href="#contact">contact</a></li>
         </ul>
     </nav>
 </header>
 
 <!-- HOME -->
-
 <section id="home" class="home">
-
     <div class="home-text">
-        <h1>Hello, I'm</h1>
+        <h1>[system.init]</h1>
         <h2>Nagalla Durga Prasad</h2>
-        <h3>ECE Student | IoT Enthusiast</h3>
+        <h3>ECE Student // IoT Enthusiast</h3>
 
         <p>
-            Passionate about Embedded Systems,
+            Passionate about Embedded Systems, 
             Smart Healthcare, IoT and Emerging Technologies.
         </p>
 
-        <a href="#contact" class="btn">Contact Me</a>
+        <a href="#contact" class="btn">_contact_me</a>
     </div>
 
     <div class="home-image">
+        <!-- Replace with your actual image path -->
         <img src="profile.png" alt="Profile Photo">
     </div>
-
 </section>
 
 <!-- ABOUT -->
-
 <section id="about">
-
-    <h2 class="section-title">About Me</h2>
-
+    <h2 class="section-title">01. About_Me</h2>
     <div class="about-container">
-
         <p>
-            I am an Electronics and Communication Engineering student
-            at BVCITS with strong interest in Arduino, Embedded Systems,
-            IoT and Smart Healthcare Technologies.
-
-            I enjoy building innovative real-world projects and continuously
+            I am an Electronics and Communication Engineering student 
+            at BVCITS with strong interest in Arduino, Embedded Systems, 
+            IoT and Smart Healthcare Technologies. 
+            <br><br>
+            I enjoy building innovative real-world projects and continuously 
             learning new technologies.
         </p>
-
     </div>
-
 </section>
 
 <!-- SKILLS -->
-
 <section id="skills">
-
-    <h2 class="section-title">Technical Skills</h2>
-
+    <h2 class="section-title">02. Tech_Stack</h2>
     <div class="skills-container">
-
         <div class="skill-card">Arduino</div>
         <div class="skill-card">MATLAB</div>
         <div class="skill-card">Python</div>
         <div class="skill-card">C Programming</div>
         <div class="skill-card">IoT Fundamentals</div>
-        <div class="skill-card">Basic Electronics</div>
+        <div class="skill-card">Electronics</div>
         <div class="skill-card">MS Excel</div>
-
     </div>
-
 </section>
 
 <!-- CERTIFICATES -->
-
 <section id="certificates">
-
-    <h2 class="section-title">Certificates</h2>
-
+    <h2 class="section-title">03. Certificates</h2>
     <div class="certificate-container">
-
         <div class="certificate-card">
-            <img src="python.jpg" alt="">
-            <h3>Python Development Training</h3>
+            <img src="python.jpg" alt="Python">
+            <h3>Python Development</h3>
         </div>
-
         <div class="certificate-card">
-            <img src="arduino.jpg" alt="">
+            <img src="arduino.jpg" alt="Arduino">
             <h3>Arduino Unlocked</h3>
         </div>
-
         <div class="certificate-card">
-            <img src="techmania.jpg" alt="">
+            <img src="techmania.jpg" alt="Techmania">
             <h3>TECHMANIA 2K26</h3>
         </div>
-
         <div class="certificate-card">
-            <img src="veda.jpg" alt="">
-            <h3>VEDA2K25</h3>
+            <img src="veda.jpg" alt="Veda">
+            <h3>VEDA 2K25</h3>
         </div>
-
         <div class="certificate-card">
-            <img src="iks.jpg" alt="">
-            <h3>Internal Quality Assurance Cell</h3>
+            <img src="iks.jpg" alt="IKS">
+            <h3>IQAC Certification</h3>
         </div>
-
         <div class="certificate-card">
-            <img src="ibm.jpg" alt="">
-            <h3>Skillsbuild</h3>
+            <img src="ibm.jpg" alt="IBM">
+            <h3>IBM Skillsbuild</h3>
         </div>
-
         <div class="certificate-card">
-            <img src="aitools.jpg" alt="">
+            <img src="aitools.jpg" alt="AI Tools">
             <h3>AI Tools Workshop</h3>
         </div>
-
     </div>
-
 </section>
 
 <!-- CONTACT -->
-
 <section id="contact">
-
-    <h2 class="section-title">Contact</h2>
-
+    <h2 class="section-title">04. Contact_Info</h2>
     <div class="contact-container">
-
-        <p>Email: ndp86881@gmail.com</p>
-        <p>Phone: +91 8688158068</p>
-        <p>Location: Tatipaka, Andhra Pradesh</p>
-
+        <p>> Email: ndp86881@gmail.com</p>
+        <p>> Phone: +91 8688158068</p>
+        <p>> Location: Tatipaka, AP</p>
+        <br>
         <a href="mailto:ndp86881@gmail.com" class="btn">
-            Send Email
+            Execute: Send Email
         </a>
-
     </div>
-
 </section>
 
 <footer>
-    <p>© 2026 Nagalla Durga Prasad</p>
+    <p>Handcrafted by NDP &copy; 2026 | Kernel: 6.1.0-stable</p>
 </footer>
+
+<script>
+    // Reveal animation on scroll
+    document.addEventListener('DOMContentLoaded', () => {
+        const sections = document.querySelectorAll('section');
+        
+        const revealOnScroll = () => {
+            sections.forEach(section => {
+                const sectionTop = section.getBoundingClientRect().top;
+                const windowHeight = window.innerHeight;
+                if (sectionTop < windowHeight * 0.85) {
+                    section.style.opacity = '1';
+                    section.style.transform = 'translateY(0)';
+                }
+            });
+        };
+
+        // Set initial states
+        sections.forEach(section => {
+            section.style.opacity = '0';
+            section.style.transform = 'translateY(20px)';
+            section.style.transition = 'all 0.6s ease-out';
+        });
+
+        window.addEventListener('scroll', revealOnScroll);
+        revealOnScroll(); // Run once on load
+    });
+</script>
 
 </body>
 </html>
